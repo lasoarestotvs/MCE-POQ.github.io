@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LogiControl - Gestão de Ocorrências</title>
+    <title>LogiControl - Ocorrências</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -118,7 +118,7 @@
         <div class="space-y-8 animate-in fade-in duration-500">
             <div class="flex flex-col md:flex-row md:justify-between md:items-end gap-4">
                 <div>
-                    <h2 class="text-3xl font-bold text-gray-800 tracking-tight">Painel de Gestão de Ocorrências e Qualidade de Entrega</h2>
+                    <h2 class="text-3xl font-bold text-gray-800 tracking-tight">Painel de Ocorrências e Qualidade de Entrega</h2>
                     <p class="text-gray-500 mt-1 text-sm">Análise de divergências reportadas pelas lojas e resoluções do Centro de Distribuição.</p>
                 </div>
                 <div class="flex gap-2">
@@ -570,174 +570,25 @@
             
             if (indicator === 'qual_total_problems') {
                 content.innerHTML = `
-                <div class="mb-2">
-                    <p class="text-sm text-gray-600 mb-6">Análise comparativa do volume de problemas face ao total de entregas e o impacto temporal (atraso) gerado pelas ocorrências em cada loja.</p>
-
-                    <!-- Legenda do Gráfico -->
-                    <div class="flex flex-wrap gap-6 mb-6 text-[10px] font-bold uppercase text-gray-500 bg-gray-50 p-4 rounded-xl border border-gray-200">
-                        <div class="flex items-center gap-2"><span class="w-3 h-3 bg-red-500 rounded-sm"></span> Entregas c/ Problemas</div>
-                        <div class="flex items-center gap-2 ml-4"><span class="w-3 h-3 bg-secondary-green rounded-full shadow-sm"></span> Tempo S/ Ocorrência</div>
-                        <div class="flex items-center gap-2"><span class="w-3 h-3 bg-amber-500 rounded-full shadow-sm"></span> Tempo C/ Ocorrência</div>
-                    </div>
-
-                    <div class="border border-gray-200 rounded-xl bg-white overflow-hidden shadow-sm">
-                        <!-- Cabeçalho -->
-                        <div class="grid grid-cols-12 gap-4 px-6 py-3 bg-gray-50 border-b border-gray-200 text-[10px] font-bold text-gray-400 uppercase">
-                            <div class="col-span-3">Loja Destino</div>
-                            <div class="col-span-4 pr-4">Proporção de Ocorrências vs Total</div>
-                            <div class="col-span-5 pl-4 border-l border-gray-200">Impacto no Tempo de Entrega (Escala 0h - 5h)</div>
-                        </div>
-
-                        <!-- Linhas da Grelha -->
-                        <div class="divide-y divide-gray-100">
-                            <!-- Loja 01 -->
-                            <div class="grid grid-cols-12 gap-4 items-center px-6 py-4 hover:bg-blue-50/30 transition-colors">
-                                <div class="col-span-3 font-bold text-gray-800 text-sm">Loja 01 (LAPA)</div>
-                                <div class="col-span-4 pr-4 flex flex-col justify-center">
-                                    <div class="flex justify-between text-[10px] text-gray-500 mb-1.5 font-medium">
-                                        <span class="text-red-600 font-bold">85 problemas</span>
-                                        <span>450 total</span>
-                                    </div>
-                                    <div class="w-full bg-gray-100 rounded-full h-2 relative">
-                                        <div class="bg-red-500 h-2 rounded-full absolute left-0" style="width: 18.9%"></div>
-                                    </div>
-                                </div>
-                                <div class="col-span-5 flex flex-col justify-center pl-4 border-l border-gray-100">
-                                    <div class="w-full h-4 relative flex items-center">
-                                        <div class="absolute w-full border-t-2 border-gray-200 border-dotted"></div>
-                                        <!-- Amplitude (Tempo perdido) -->
-                                        <div class="absolute h-1.5 bg-amber-100 rounded" style="left: 45%; width: 30%;"></div>
-                                        <!-- Pontos -->
-                                        <div class="absolute w-3.5 h-3.5 bg-secondary-green rounded-full z-10 shadow cursor-help group" style="left: 45%; transform: translateX(-50%);">
-                                            <span class="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap shadow-lg z-50 transition-opacity">Normal: 02:15h</span>
-                                        </div>
-                                        <div class="absolute w-3.5 h-3.5 bg-amber-500 rounded-full z-10 shadow cursor-help group" style="left: 75%; transform: translateX(-50%);">
-                                            <span class="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap shadow-lg z-50 transition-opacity">Atraso: 03:45h</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex justify-between text-[9px] text-gray-300 mt-2 font-medium">
-                                        <span>0h</span><span>1h</span><span>2h</span><span>3h</span><span>4h</span><span>5h</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Loja 05 -->
-                            <div class="grid grid-cols-12 gap-4 items-center px-6 py-4 hover:bg-blue-50/30 transition-colors">
-                                <div class="col-span-3 font-bold text-gray-800 text-sm">Loja 05 (CENTRO)</div>
-                                <div class="col-span-4 pr-4 flex flex-col justify-center">
-                                    <div class="flex justify-between text-[10px] text-gray-500 mb-1.5 font-medium">
-                                        <span class="text-red-600 font-bold">65 problemas</span>
-                                        <span>380 total</span>
-                                    </div>
-                                    <div class="w-full bg-gray-100 rounded-full h-2 relative">
-                                        <div class="bg-red-500 h-2 rounded-full absolute left-0" style="width: 17.1%"></div>
-                                    </div>
-                                </div>
-                                <div class="col-span-5 flex flex-col justify-center pl-4 border-l border-gray-100">
-                                    <div class="w-full h-4 relative flex items-center">
-                                        <div class="absolute w-full border-t-2 border-gray-200 border-dotted"></div>
-                                        <div class="absolute h-1.5 bg-amber-100 rounded" style="left: 36.6%; width: 26.7%;"></div>
-                                        <div class="absolute w-3.5 h-3.5 bg-secondary-green rounded-full z-10 shadow cursor-help group" style="left: 36.6%; transform: translateX(-50%);">
-                                            <span class="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap shadow-lg z-50 transition-opacity">Normal: 01:50h</span>
-                                        </div>
-                                        <div class="absolute w-3.5 h-3.5 bg-amber-500 rounded-full z-10 shadow cursor-help group" style="left: 63.3%; transform: translateX(-50%);">
-                                            <span class="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap shadow-lg z-50 transition-opacity">Atraso: 03:10h</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex justify-between text-[9px] text-gray-300 mt-2 font-medium">
-                                        <span>0h</span><span>1h</span><span>2h</span><span>3h</span><span>4h</span><span>5h</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Loja 12 -->
-                            <div class="grid grid-cols-12 gap-4 items-center px-6 py-4 hover:bg-blue-50/30 transition-colors">
-                                <div class="col-span-3 font-bold text-gray-800 text-sm">Loja 12 (NORTE)</div>
-                                <div class="col-span-4 pr-4 flex flex-col justify-center">
-                                    <div class="flex justify-between text-[10px] text-gray-500 mb-1.5 font-medium">
-                                        <span class="text-red-600 font-bold">40 problemas</span>
-                                        <span>310 total</span>
-                                    </div>
-                                    <div class="w-full bg-gray-100 rounded-full h-2 relative">
-                                        <div class="bg-red-500 h-2 rounded-full absolute left-0" style="width: 12.9%"></div>
-                                    </div>
-                                </div>
-                                <div class="col-span-5 flex flex-col justify-center pl-4 border-l border-gray-100">
-                                    <div class="w-full h-4 relative flex items-center">
-                                        <div class="absolute w-full border-t-2 border-gray-200 border-dotted"></div>
-                                        <div class="absolute h-1.5 bg-amber-100 rounded" style="left: 53.3%; width: 33.3%;"></div>
-                                        <div class="absolute w-3.5 h-3.5 bg-secondary-green rounded-full z-10 shadow cursor-help group" style="left: 53.3%; transform: translateX(-50%);">
-                                            <span class="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap shadow-lg z-50 transition-opacity">Normal: 02:40h</span>
-                                        </div>
-                                        <div class="absolute w-3.5 h-3.5 bg-amber-500 rounded-full z-10 shadow cursor-help group" style="left: 86.6%; transform: translateX(-50%);">
-                                            <span class="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap shadow-lg z-50 transition-opacity">Atraso: 04:20h</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex justify-between text-[9px] text-gray-300 mt-2 font-medium">
-                                        <span>0h</span><span>1h</span><span>2h</span><span>3h</span><span>4h</span><span>5h</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Loja 08 -->
-                            <div class="grid grid-cols-12 gap-4 items-center px-6 py-4 hover:bg-blue-50/30 transition-colors">
-                                <div class="col-span-3 font-bold text-gray-800 text-sm">Loja 08 (SUL)</div>
-                                <div class="col-span-4 pr-4 flex flex-col justify-center">
-                                    <div class="flex justify-between text-[10px] text-gray-500 mb-1.5 font-medium">
-                                        <span class="text-red-600 font-bold">22 problemas</span>
-                                        <span>290 total</span>
-                                    </div>
-                                    <div class="w-full bg-gray-100 rounded-full h-2 relative">
-                                        <div class="bg-red-500 h-2 rounded-full absolute left-0" style="width: 7.6%"></div>
-                                    </div>
-                                </div>
-                                <div class="col-span-5 flex flex-col justify-center pl-4 border-l border-gray-100">
-                                    <div class="w-full h-4 relative flex items-center">
-                                        <div class="absolute w-full border-t-2 border-gray-200 border-dotted"></div>
-                                        <div class="absolute h-1.5 bg-amber-100 rounded" style="left: 41.6%; width: 28.4%;"></div>
-                                        <div class="absolute w-3.5 h-3.5 bg-secondary-green rounded-full z-10 shadow cursor-help group" style="left: 41.6%; transform: translateX(-50%);">
-                                            <span class="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap shadow-lg z-50 transition-opacity">Normal: 02:05h</span>
-                                        </div>
-                                        <div class="absolute w-3.5 h-3.5 bg-amber-500 rounded-full z-10 shadow cursor-help group" style="left: 70%; transform: translateX(-50%);">
-                                            <span class="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap shadow-lg z-50 transition-opacity">Atraso: 03:30h</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex justify-between text-[9px] text-gray-300 mt-2 font-medium">
-                                        <span>0h</span><span>1h</span><span>2h</span><span>3h</span><span>4h</span><span>5h</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Loja 02 -->
-                            <div class="grid grid-cols-12 gap-4 items-center px-6 py-4 hover:bg-blue-50/30 transition-colors">
-                                <div class="col-span-3 font-bold text-gray-800 text-sm">Loja 02 (OESTE)</div>
-                                <div class="col-span-4 pr-4 flex flex-col justify-center">
-                                    <div class="flex justify-between text-[10px] text-gray-500 mb-1.5 font-medium">
-                                        <span class="text-red-600 font-bold">15 problemas</span>
-                                        <span>215 total</span>
-                                    </div>
-                                    <div class="w-full bg-gray-100 rounded-full h-2 relative">
-                                        <div class="bg-red-500 h-2 rounded-full absolute left-0" style="width: 7.0%"></div>
-                                    </div>
-                                </div>
-                                <div class="col-span-5 flex flex-col justify-center pl-4 border-l border-gray-100">
-                                    <div class="w-full h-4 relative flex items-center">
-                                        <div class="absolute w-full border-t-2 border-gray-200 border-dotted"></div>
-                                        <div class="absolute h-1.5 bg-amber-100 rounded" style="left: 46.6%; width: 31.7%;"></div>
-                                        <div class="absolute w-3.5 h-3.5 bg-secondary-green rounded-full z-10 shadow cursor-help group" style="left: 46.6%; transform: translateX(-50%);">
-                                            <span class="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap shadow-lg z-50 transition-opacity">Normal: 02:20h</span>
-                                        </div>
-                                        <div class="absolute w-3.5 h-3.5 bg-amber-500 rounded-full z-10 shadow cursor-help group" style="left: 78.3%; transform: translateX(-50%);">
-                                            <span class="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap shadow-lg z-50 transition-opacity">Atraso: 03:55h</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex justify-between text-[9px] text-gray-300 mt-2 font-medium">
-                                        <span>0h</span><span>1h</span><span>2h</span><span>3h</span><span>4h</span><span>5h</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="overflow-x-auto border rounded-xl">
+                    <table class="w-full text-left text-sm">
+                        <thead>
+                            <tr class="bg-gray-50 border-b text-[10px] uppercase font-bold text-gray-400">
+                                <th class="px-4 py-3">Loja</th>
+                                <th class="px-4 py-3 text-center">Qtde Total Entregas</th>
+                                <th class="px-4 py-3 text-center">Entregas c/ Problemas</th>
+                                <th class="px-4 py-3 text-center leading-tight">Tempo Médio<br>s/ Ocorrência</th>
+                                <th class="px-4 py-3 text-center leading-tight">Tempo Médio<br>c/ Ocorrência</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y">
+                            <tr><td class="px-4 py-3 font-bold">Loja 01 (LAPA)</td><td class="px-4 py-3 text-center">450</td><td class="px-4 py-3 text-center text-red-600 font-bold">85</td><td class="px-4 py-3 text-center">02:15h</td><td class="px-4 py-3 text-center">03:45h</td></tr>
+                            <tr><td class="px-4 py-3 font-bold">Loja 05 (CENTRO)</td><td class="px-4 py-3 text-center">380</td><td class="px-4 py-3 text-center text-red-600 font-bold">65</td><td class="px-4 py-3 text-center">01:50h</td><td class="px-4 py-3 text-center">03:10h</td></tr>
+                            <tr><td class="px-4 py-3 font-bold">Loja 12 (NORTE)</td><td class="px-4 py-3 text-center">310</td><td class="px-4 py-3 text-center text-red-600 font-bold">40</td><td class="px-4 py-3 text-center">02:40h</td><td class="px-4 py-3 text-center">04:20h</td></tr>
+                            <tr><td class="px-4 py-3 font-bold">Loja 08 (SUL)</td><td class="px-4 py-3 text-center">290</td><td class="px-4 py-3 text-center text-red-600 font-bold">22</td><td class="px-4 py-3 text-center">02:05h</td><td class="px-4 py-3 text-center">03:30h</td></tr>
+                            <tr><td class="px-4 py-3 font-bold">Loja 02 (OESTE)</td><td class="px-4 py-3 text-center">215</td><td class="px-4 py-3 text-center text-red-600 font-bold">15</td><td class="px-4 py-3 text-center">02:20h</td><td class="px-4 py-3 text-center">03:55h</td></tr>
+                        </tbody>
+                    </table>
                 </div>`;
             } else {
                 const items = mockDataDetails[indicator] || [];
