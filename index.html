@@ -132,24 +132,38 @@
             <div class="space-y-6">
                 <!-- Principais -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-white p-6 rounded-xl shadow-md border-b-4 border-accent-red compliance-card alert flex justify-between items-center" onclick="showCardDetails('qual_non_compliance')">
-                        <div class="flex-1">
-                            <p class="text-sm font-medium text-gray-500 mb-1">Entregas com Ocorrências</p>
-                            <p class="text-5xl font-extrabold text-gray-900 tracking-tight">4.5%</p>
+                    <div class="bg-white p-6 pb-4 rounded-xl shadow-md border-b-4 border-accent-red compliance-card alert flex flex-col justify-between h-full" onclick="showCardDetails('qual_non_compliance')">
+                        <div class="flex justify-between items-start mb-5">
+                            <div class="flex-1 pr-4">
+                                <p class="text-base font-medium text-gray-500 mb-1">Entregas com Ocorrências</p>
+                                <p class="text-6xl font-extrabold text-gray-900 tracking-tight">4.5%</p>
+                            </div>
+                            <div class="pl-6 border-l border-gray-100 space-y-3 min-w-[140px] mt-1">
+                                <div><p class="text-xs text-gray-400 uppercase font-bold">Total Entregas</p><p class="text-xl font-bold text-gray-700">2.555</p></div>
+                                <div><p class="text-xs text-gray-400 uppercase font-bold">Com Ocorrências</p><p class="text-xl font-bold text-accent-red">115</p></div>
+                            </div>
                         </div>
-                        <div class="pl-6 border-l border-gray-100 space-y-3 min-w-[140px]">
-                            <div><p class="text-[10px] text-gray-400 uppercase font-bold">Total Entregas</p><p class="text-lg font-bold text-gray-700">2.555</p></div>
-                            <div><p class="text-[10px] text-gray-400 uppercase font-bold">Com Ocorrências</p><p class="text-lg font-bold text-accent-red">115</p></div>
+                        <div class="pt-3 border-t border-gray-100 text-xs text-accent-red flex items-center flex-wrap gap-y-1 w-full mt-auto">
+                            <span class="font-bold text-sm">Média (90dias): 4.2%</span>
+                            <span class="mx-2 opacity-50">|</span>
+                            <span>Jan: 4.1% <span class="mx-1 opacity-50">&bull;</span> Fev: 4.3% <span class="mx-1 opacity-50">&bull;</span> Mar: 4.2%</span>
                         </div>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow-md border-b-4 border-secondary-green compliance-card flex justify-between items-center" onclick="showCardDetails('qual_total_problems')">
-                        <div class="flex-1">
-                            <p class="text-sm font-medium text-gray-500 mb-1">Lojas com Ocorrências</p>
-                            <p class="text-5xl font-extrabold text-gray-900 tracking-tight">26.7%</p>
+                    <div class="bg-white p-6 pb-4 rounded-xl shadow-md border-b-4 border-secondary-green compliance-card flex flex-col justify-between h-full" onclick="showCardDetails('qual_total_problems')">
+                        <div class="flex justify-between items-start mb-5">
+                            <div class="flex-1 pr-4">
+                                <p class="text-base font-medium text-gray-500 mb-1">Lojas com Ocorrências</p>
+                                <p class="text-6xl font-extrabold text-gray-900 tracking-tight">26.7%</p>
+                            </div>
+                            <div class="pl-6 border-l border-gray-100 space-y-3 min-w-[140px] mt-1">
+                                <div><p class="text-xs text-gray-400 uppercase font-bold">Total Lojas</p><p class="text-xl font-bold text-gray-700">45</p></div>
+                                <div><p class="text-xs text-gray-400 uppercase font-bold">Com Ocorrências</p><p class="text-xl font-bold text-secondary-green">12</p></div>
+                            </div>
                         </div>
-                        <div class="pl-6 border-l border-gray-100 space-y-3 min-w-[140px]">
-                            <div><p class="text-[10px] text-gray-400 uppercase font-bold">Total Lojas</p><p class="text-lg font-bold text-gray-700">45</p></div>
-                            <div><p class="text-[10px] text-gray-400 uppercase font-bold">Com Ocorrências</p><p class="text-lg font-bold text-secondary-green">12</p></div>
+                        <div class="pt-3 border-t border-gray-100 text-xs text-secondary-green flex items-center flex-wrap gap-y-1 w-full mt-auto">
+                            <span class="font-bold text-sm">Média (90dias): 25.5%</span>
+                            <span class="mx-2 opacity-50">|</span>
+                            <span>Jan: 24.8% <span class="mx-1 opacity-50">&bull;</span> Fev: 26.1% <span class="mx-1 opacity-50">&bull;</span> Mar: 25.6%</span>
                         </div>
                     </div>
                 </div>
